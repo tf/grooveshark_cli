@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+host="localhost:4000"
+
+case "$1" in
+"playPause")
+  path="/playPause"
+  ;;
+"next")
+  path="/next"
+  ;;
+"previous")
+  path="/previous"
+  ;;
+*)
+  echo "Invalid command"
+  exit 1;
+esac
+
+curl "$host$path"
+exit 0;

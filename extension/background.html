@@ -1,0 +1,38 @@
+<script src="socket.io.js"></script>
+<script>
+  var host = 'http://localhost:4000';
+
+  function showPageActionForValidURL(tabId, changeInfo, tab) {
+    if (tab.url.indexOf('grooveshark.com') > -1) {
+      chrome.pageAction.show(tabId);
+    }
+  }
+
+  chrome.tabs.onUpdated.addListener(showPageActionForValidURL)
+
+  chrome.extension.onConnect.addListener(function(port) {
+    console.log('Connect');
+    var socket = io.connect(host);
+
+    socket.on('playPause', function() {
+      port.postMessage({method: 'playPause'});
+    });
+
+    socket.on('next', function() {
+      port.postMessage({method: 'next'});
+    });
+
+    socket.on('previous', function() {
+      port.postMessage({method: 'previous'});
+    });
+
+    socket.on('setVolume', function(volume) {
+      port.postMessage({method: 'setVolume', args: [volume]});
+    });
+
+    port.onDisconnect.addListener(function() {
+      console.log('Disconnect');
+      socket.disconnect();
+    });
+  });
+</script>
