@@ -3,9 +3,23 @@
 
   </head>
   <body>
-    Connected!
-    <script>
-      chrome.tabs.executeScript(null, {file: 'content_script.js'});
-    </script>
+    <h2>Grooveshark CLI</h2>
+
+    <div id="disconnectedTab">
+      <label>Host</label>
+      <input type="text" id="hostField" />
+
+      <label>Handle</label>
+      <input type="text" id="handleField" />
+
+      <button id="connect">Connect</button>
+    </div>
+    <div id="connectedTab" style="display: none;">
+      <span id="host"></span>
+      <span id="handle"></span>
+      <button id="disconnect">Disconnect</button>
+    </div>
+
+    <script src="popup.js"></script>
   </body>
 </html>
