@@ -1,0 +1,14 @@
+{
+  "name": "grooveshark-cli-server",
+  "description": "",
+  "version": "0.0.1",
+  "authors": ["Tim Fischbach"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tf/grooveshark_cli.git"
+  },
+  "dependencies": {
+    "connect": "1.7.1",
+    "socket.io": "0.8.4"
+  }
+}
